@@ -9,6 +9,6 @@
     "build:frontend": "cd frontend && npm run build",
     "start:backend": "cd backend && uvicorn main:app --reload",
     "build:backend": "node run_create_conda_env.js",
-    "install:all": "cd frontend && npm install && cd ../ && node run_create_conda_env.js"
+    "install:all": "cd frontend && npm install && cd ../ && node create_conda_env.js"
   }
 }
