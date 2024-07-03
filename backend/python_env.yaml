@@ -1,0 +1,23 @@
+name: citizen
+channels:
+  - defaults
+dependencies:
+  - python==3.12.3
+  - pip
+  - pip:
+      - python-dotenv
+      - sentence-transformers
+      - openai
+      - tiktoken
+      - torch
+      - qdrant-client
+      - openpyxl
+      - fastapi
+      - uvicorn
+      - ollama
+      - pymongo
+      - passlib[bcrypt]
+      - pydantic[email]
+      - pyjwt
+      - secrets
+      - motor

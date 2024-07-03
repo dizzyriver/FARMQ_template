@@ -1,0 +1,97 @@
+/* src/styles/global.css */
+:root {
+  /* Fonts */
+  --font-family-primary: 'DM Sans', sans-serif;
+  --font-family-secondary: 'DM Serif Display', serif;
+
+  /* Primary Colors */
+  --color-primary: #37B0C2;
+  --color-primary-50: #E0F7FA;
+  --color-primary-100: #B3EBF6;
+  --color-primary-200: #80DEEF;
+  --color-primary-300: #4DD0E1;
+  --color-primary-400: #26C6DA;
+  --color-primary-500: #00BCD4;
+  --color-primary-600: #00ACC1;
+  --color-primary-700: #0097A7;
+  --color-primary-800: #00838F;
+  --color-primary-900: #006064;
+
+  --color-on-primary: #FFFFFF;
+
+  /* Secondary Colors */
+  --color-secondary: #657355;
+  --color-secondary-50: #F0F4C3;
+  --color-secondary-100: #E6EE9C;
+  --color-secondary-200: #DCE775;
+  --color-secondary-300: #D4E157;
+  --color-secondary-400: #CDDC39;
+  --color-secondary-500: #C0CA33;
+  --color-secondary-600: #AFB42B;
+  --color-secondary-700: #9E9D24;
+  --color-secondary-800: #827717;
+  --color-secondary-900: #6D4C41;
+
+  --color-on-secondary: #FFFFFF;
+
+  /* Background Colors */
+  --color-background: #FFFFFF;
+  --color-surface: #FFF9C4;
+
+  /* Error Color */
+  --color-error: #B00020;
+
+  /* On Background Colors */
+  --color-on-background: #212121;
+  --color-on-surface: #212121;
+
+  /* Complementary Colors */
+  --color-complementary-50: #FFEBEE;
+  --color-complementary-100: #FFCDD2;
+  --color-complementary-200: #EF9A9A;
+  --color-complementary-300: #E57373;
+  --color-complementary-400: #EF5350;
+  --color-complementary-500: #F44336;
+  --color-complementary-600: #E53935;
+  --color-complementary-700: #D32F2F;
+  --color-complementary-800: #C62828;
+  --color-complementary-900: #B71C1C;
+
+  /* Analogous Colors */
+  --color-analogous-50: #E0F2F1;
+  --color-analogous-100: #B2DFDB;
+  --color-analogous-200: #80CBC4;
+  --color-analogous-300: #4DB6AC;
+  --color-analogous-400: #26A69A;
+  --color-analogous-500: #009688;
+  --color-analogous-600: #00897B;
+  --color-analogous-700: #00796B;
+  --color-analogous-800: #00695C;
+  --color-analogous-900: #004D40;
+
+  /* Triadic Colors */
+  --color-triadic-50: #E8EAF6;
+  --color-triadic-100: #C5CAE9;
+  --color-triadic-200: #9FA8DA;
+  --color-triadic-300: #7986CB;
+  --color-triadic-400: #5C6BC0;
+  --color-triadic-500: #3F51B5;
+  --color-triadic-600: #3949AB;
+  --color-triadic-700: #303F9F;
+  --color-triadic-800: #283593;
+  --color-triadic-900: #1A237E;
+}
+
+/* Apply globally to ensure it's available */
+body, button, input, textarea {
+  font-family: var(--font-family-primary);
+}
+
+/* Example usage of added fonts */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-secondary);
+}
+
+p, strong, em {
+  font-family: var(--font-family-primary);
+}
