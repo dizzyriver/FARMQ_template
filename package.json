@@ -1,17 +1,14 @@
 {
-    "name": "FARMQ_template",
-    "version": "1.0.0",
-    "description": "Template for FARMQ project",
-    "main": "setup.js",
-    "scripts": {
-      "setup": "node setup.js",
-      "start:frontend": "cd frontend && npm start",
-      "build:frontend": "cd frontend && npm run build",
-      "start:backend": "cd backend && uvicorn main:app --reload",
-      "build:backend": "node run_create_conda_env.js",
-      "install:all": "npm install && cd frontend && npm install && node run_create_conda_env.js"
-    },
-    "dependencies": {
-      "redux-devtools-extension": "^2.13.9"
-    }
+  "name": "FARMQ_template",
+  "version": "1.0.0",
+  "description": "Template for FARMQ project",
+  "main": "setup.js",
+  "scripts": {
+    "setup": "node setup.js",
+    "start:frontend": "cd frontend && npm start",
+    "build:frontend": "cd frontend && npm run build",
+    "start:backend": "cd backend && uvicorn main:app --reload",
+    "build:backend": "node run_create_conda_env.js",
+    "install:all": "cd frontend && npm install && cd ../ && node run_create_conda_env.js"
   }
+}
