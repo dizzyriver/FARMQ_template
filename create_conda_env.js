@@ -1,10 +1,12 @@
 const { execSync } = require("child_process");
-const fs = require("fs");
 
-// Read the environment name from a configuration file or environment variable
-const envName =
-  process.env.PROJECT_NAME ||
-  JSON.parse(fs.readFileSync("./project-config.json", "utf8")).name;
+// Read the environment name from an environment variable
+const envName = process.env.PROJECT_NAME;
+
+if (!envName) {
+  console.error('Environment name not provided. Ensure the PROJECT_NAME environment variable is set.');
+  process.exit(1);
+}
 
 try {
   execSync(`cd backend && ./create_conda_env.sh ${envName}`, {
