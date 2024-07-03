@@ -4,11 +4,11 @@
   "description": "Template for FARMQ project",
   "main": "setup.js",
   "scripts": {
-    "setup": "node setup.js",
+    "setup": "node setup.js citizen_achievement",
     "start:frontend": "cd frontend && npm start",
     "build:frontend": "cd frontend && npm run build",
     "start:backend": "cd backend && uvicorn main:app --reload",
-    "build:backend": "node run_create_conda_env.js",
+    "build:backend": "node create_conda_env.js",
     "install:all": "cd frontend && npm install && cd ../ && node create_conda_env.js"
   }
 }

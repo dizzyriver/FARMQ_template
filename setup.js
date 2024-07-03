@@ -1,42 +1,18 @@
 const fs = require("fs");
-const readline = require("readline");
 const path = require("path");
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+// Assuming the project name is passed as an argument to the setup script
+const projectName = process.argv[2];
 
-rl.question("Enter your project name: ", function (name) {
-  rl.close();
-
-  // Path to frontend package.json file
-  const frontendPackageJsonPath = path.join(
-    __dirname,
-    "frontend",
-    "package.json"
+if (!projectName) {
+  console.error(
+    "Project name not provided. Usage: node setup.js <project-name>"
   );
+  process.exit(1);
+}
 
-  // Function to update package.json
-  function updatePackageJson(filePath) {
-    fs.readFile(filePath, "utf8", (err, data) => {
-      if (err) throw err;
+// Update project-config.json with the new project name
+const configPath = path.join(__dirname, "project-config.json");
+fs.writeFileSync(configPath, JSON.stringify({ name: projectName }, null, 2));
 
-      const packageJson = JSON.parse(data);
-      packageJson.name = name;
-
-      fs.writeFile(
-        filePath,
-        JSON.stringify(packageJson, null, 2),
-        "utf8",
-        (err) => {
-          if (err) throw err;
-          console.log(`Project name updated in ${filePath}`);
-        }
-      );
-    });
-  }
-
-  // Update package.json in frontend
-  updatePackageJson(frontendPackageJsonPath);
-});
+console.log(`Project name set to ${projectName}`);
