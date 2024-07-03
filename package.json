@@ -4,12 +4,14 @@
     "description": "Template for FARMQ project",
     "main": "setup.js",
     "scripts": {
-      "setup": "node setup.js",
-      "start:frontend": "cd frontend && npm start",
-      "build:frontend": "cd frontend && npm run build",
-      "start:backend": "cd backend && uvicorn main:app --reload",
-      "install:all": "npm install && cd frontend && npm install && cd ../backend && pip install -r requirements.txt"
+        "setup": "node setup.js",
+        "start:frontend": "cd frontend && npm start",
+        "build:frontend": "cd frontend && npm run build",
+        "start:backend": "cd backend && uvicorn main:app --reload",
+        "build:backend": "cd backend && ./create_conda_env.sh",
+        "install:all": "npm install && cd frontend && npm install && cd ../backend && ./create_conda_env.sh"
     },
-    "dependencies": {},
-    "devDependencies": {}
-  }
+    "dependencies": {
+        "redux-devtools-extension": "^2.13.9"
+    }
+}

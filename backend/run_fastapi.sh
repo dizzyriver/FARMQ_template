@@ -7,7 +7,7 @@ export PYTHONPATH="${HOME}/development/repositories/piko"
 echo "PYTHONPATH: $PYTHONPATH"
 
 # Set the path to the .env file
-export ENV_FILE_PATH="${HOME}/development/repositories/piko/.env"
+export ENV_FILE_PATH="./.env"
 echo "ENV_FILE_PATH: $ENV_FILE_PATH"
 
 # Run Uvicorn with reloader, ensuring PYTHONPATH is inherited

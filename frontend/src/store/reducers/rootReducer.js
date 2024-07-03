@@ -1,17 +1,9 @@
-//src/store/reducers/rootReducer.js
 import { combineReducers } from "redux";
+import authReducer from "./authReducer";
 
-// Define a placeholder reducer
-const placeholderReducer = (state = {}, action) => {
-  switch (action.type) {
-    default:
-      return state;
-  }
-};
-
-// Combine all reducers (currently just one)
 const rootReducer = combineReducers({
-  placeholder: placeholderReducer,
+  auth: authReducer,
+  // Add other reducers here
 });
 
 export default rootReducer;

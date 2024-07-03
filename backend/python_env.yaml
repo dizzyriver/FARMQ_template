@@ -1,4 +1,4 @@
-name: citizen
+name: farmq
 channels:
   - defaults
 dependencies:
@@ -19,5 +19,5 @@ dependencies:
       - passlib[bcrypt]
       - pydantic[email]
       - pyjwt
-      - secrets
+      - pyopenssl
       - motor

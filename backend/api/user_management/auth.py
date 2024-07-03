@@ -10,24 +10,29 @@ from dotenv import load_dotenv, find_dotenv
 from passlib.context import CryptContext
 from typing import Optional
 
+# Load environment variables
 load_dotenv(find_dotenv())
 
 JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")
 ALGORITHM = "HS256"
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
+# Password hashing context
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
-def hash_password(password: str):
+def hash_password(password: str) -> str:
+    """Hash a plain password."""
     return pwd_context.hash(password)
 
 
-def verify_password(plain_password, hashed_password):
+def verify_password(plain_password: str, hashed_password: str) -> bool:
+    """Verify a plain password against a hashed password."""
     return pwd_context.verify(plain_password, hashed_password)
 
 
 async def get_current_user(token: str = Depends(oauth2_scheme)) -> UserInDB:
+    """Get the current user from the token."""
     credentials_exception = HTTPException(
         status_code=401,
         detail="Could not validate credentials",
@@ -47,15 +52,18 @@ async def get_current_user(token: str = Depends(oauth2_scheme)) -> UserInDB:
     except InvalidTokenError:
         raise credentials_exception
 
-    db = MongoDB().get_collection("users")
-    user = await db.find_one({"username": username})
-    if user is None:
-        raise credentials_exception
+    async with MongoDB() as db:
+        user = await db.get_user_collection().find_one({"username": username})
+        if user is None:
+            raise credentials_exception
 
     return UserInDB(**user)
 
 
-def create_access_token(username: str, expires_delta: timedelta = None):
+def create_access_token(
+    username: str, expires_delta: Optional[timedelta] = None
+) -> str:
+    """Create a JWT access token."""
     if expires_delta:
         expire = datetime.utcnow() + expires_delta
     else:
