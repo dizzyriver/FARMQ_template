@@ -4,7 +4,7 @@
   "description": "Template for FARMQ project",
   "main": "setup.js",
   "scripts": {
-    "setup": "node setup.js", // No hardcoded project name
+    "setup": "node setup.js", 
     "start:frontend": "cd frontend && npm start",
     "build:frontend": "cd frontend && npm run build",
     "start:backend": "cd backend && uvicorn main:app --reload",
