@@ -1,6 +1,7 @@
 from motor.motor_asyncio import AsyncIOMotorClient
 from dotenv import load_dotenv, find_dotenv
 from pydantic import BaseModel
+from typing import Any, Dict
 import os
 import logging
 
@@ -33,6 +34,13 @@ class MongoDB:
     async def __aexit__(self, exc_type, exc_val, exc_tb):
         self.client.close()
         logging.info("MongoDB connection closed")
+
+    @staticmethod
+    def convert_objectid(document: Dict[str, Any]) -> Dict[str, Any]:
+        """Convert ObjectId to string in a MongoDB document."""
+        if "_id" in document:
+            document["_id"] = str(document["_id"])
+        return document
 
 
 def build_projection(model: BaseModel) -> dict:
