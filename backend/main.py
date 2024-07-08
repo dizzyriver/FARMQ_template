@@ -2,7 +2,7 @@ import os
 import sys
 
 # Import FastAPI and other required components
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
@@ -21,8 +21,8 @@ from dotenv import find_dotenv, load_dotenv
 
 load_dotenv(find_dotenv())
 
-
 # Import routers after adding the backend path
+from backend.api.user_management.router import router as user_router
 
 # Initialize FastAPI app
 app = FastAPI()
@@ -44,7 +44,7 @@ app.add_middleware(
 )
 
 # Register the routers
-
+app.include_router(user_router, prefix="/api")
 
 # Mount static directories under a single base path
 app.mount("/static/audio", StaticFiles(directory=os.getenv("AUDIO")), name="audio")

@@ -1,10 +1,12 @@
+# /backend/api/user_management/models.py
 from pydantic import BaseModel, EmailStr
 from typing import List
 from pydantic import Field
 
 
 class UserBase(BaseModel):
-    username: str
+    firstName: str
+    lastName: str
     email: EmailStr
 
 
