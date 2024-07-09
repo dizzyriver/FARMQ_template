@@ -13,7 +13,7 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../store/actions/authActions";
 import { useNavigate } from "react-router-dom";
 
@@ -34,8 +34,10 @@ export default function Login() {
   const theme = useTheme();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const auth = useSelector((state) => state.auth);
 
   const [account, setAccount] = React.useState({ username: "", password: "" });
+  const [errorMessage, setErrorMessage] = React.useState("");
 
   const handleAccountChange = (property, event) => {
     const accountCopy = { ...account };
@@ -43,16 +45,21 @@ export default function Login() {
     setAccount(accountCopy);
   };
 
-  const handleLogin = async (event) => {
+  const handleLogin = (event) => {
     event.preventDefault();
-    try {
-      await dispatch(loginUser(account));
-      console.log("Login was successful"); // Add logging
-      navigate("/landing-page"); // Redirect after login attempt
-    } catch (error) {
-      console.error("Login failed", error); // Add logging
-    }
+    dispatch(loginUser(account));
   };
+
+  React.useEffect(() => {
+    if (auth.token) {
+      navigate("/landing-page");
+    }
+    if (auth.error) {
+      setErrorMessage(
+        typeof auth.error === "string" ? auth.error : JSON.stringify(auth.error)
+      );
+    }
+  }, [auth.token, auth.error, navigate]);
 
   return (
     <Grid container component="main" sx={{ height: "100vh" }}>
@@ -90,6 +97,11 @@ export default function Login() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
+          {errorMessage && (
+            <Typography color="error" variant="body2">
+              {errorMessage}
+            </Typography>
+          )}
           <Box
             component="form"
             noValidate

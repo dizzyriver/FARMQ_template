@@ -1,4 +1,3 @@
-# /backend/api/user_management/auth.py
 import os
 import jwt
 import bcrypt
@@ -15,6 +14,9 @@ from typing import Optional
 load_dotenv(find_dotenv())
 
 JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")
+if JWT_SECRET_KEY is None:
+    raise ValueError("JWT_SECRET_KEY environment variable not set")
+
 ALGORITHM = "HS256"
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 

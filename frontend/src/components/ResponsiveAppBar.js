@@ -48,8 +48,9 @@ function ResponsiveAppBar() {
   };
 
   const handleLogout = () => {
+    handleCloseUserMenu(); // Close user menu on logout
     dispatch(logoutUser());
-    navigate("/login");
+    navigate("/landing-page");
   };
 
   return (
@@ -59,12 +60,15 @@ function ResponsiveAppBar() {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <MoodIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <MoodIcon
+            sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+            onClick={() => navigate("/landing-page")}
+          />
           <Typography
             variant="h6"
             noWrap
             component="a"
-            href="#"
+            onClick={() => navigate("/landing-page")}
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -73,6 +77,7 @@ function ResponsiveAppBar() {
               letterSpacing: ".3rem",
               color: theme.palette.primary.contrastText,
               textDecoration: "none",
+              cursor: "pointer",
             }}
           >
             LOGO
@@ -114,12 +119,15 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
-          <MoodIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <MoodIcon
+            sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+            onClick={() => navigate("/landing-page")}
+          />
           <Typography
             variant="h5"
             noWrap
             component="a"
-            href="#"
+            onClick={() => navigate("/landing-page")}
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -129,6 +137,7 @@ function ResponsiveAppBar() {
               letterSpacing: ".3rem",
               color: theme.palette.primary.contrastText,
               textDecoration: "none",
+              cursor: "pointer",
             }}
           >
             LOGO
