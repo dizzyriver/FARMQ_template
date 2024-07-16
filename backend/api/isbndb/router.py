@@ -52,3 +52,38 @@ async def get_books(
                 )
 
         return data
+
+
+@router.get("/book")
+async def get_book_by_isbn(
+    isbn: str,
+):
+    url = f"https://api2.isbndb.com/book/{isbn}"
+    headers = {"accept": "application/json", "Authorization": ISBNDB_API_KEY}
+
+    async with httpx.AsyncClient() as client:
+        response = await client.get(url, headers=headers)
+        if response.status_code != 200:
+            raise HTTPException(
+                status_code=response.status_code,
+                detail="Error fetching data from ISBNdb API",
+            )
+
+        data = response.json()
+
+        # Insert the book into MongoDB collection "isbndb"
+        if "book" in data:
+            book = data["book"]
+            try:
+                collection = mongodb.get_collection("isbndb")
+                # Insert the book into the collection
+                result = await collection.insert_one(book)
+                # Convert the inserted_id to string
+                book["_id"] = str(result.inserted_id)
+                return {"inserted_id": book["_id"], "book": book}
+            except Exception as e:
+                raise HTTPException(
+                    status_code=500, detail=f"Error inserting data into MongoDB: {e}"
+                )
+
+        return data
