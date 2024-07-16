@@ -8,6 +8,10 @@ import logging
 # Load environment variables from a .env file
 load_dotenv(find_dotenv())
 
+# Print environment variables for debugging
+print("DB_NAME:", os.getenv("DB_NAME"))
+print("MONGO_CONNECTION_STRING:", os.getenv("MONGO_CONNECTION_STRING"))
+
 
 class MongoDB:
     def __init__(self):

@@ -1,0 +1,14 @@
+{
+    "categories": [
+        {"url": "https://bookpath.gr/c/anthropistikes-epistimes", "active": false},
+        {"url": "https://bookpath.gr/c/thetikes-epistimes", "active": false},
+        {"url": "https://bookpath.gr/c/koinonikes-epistimes", "active": false},
+        {"url": "https://bookpath.gr/c/ygia-aftoveltiosi", "active": false},
+        {"url": "https://bookpath.gr/c/oikonomika", "active": false},
+        {"url": "https://bookpath.gr/c/nomika", "active": true},
+        {"url": "https://bookpath.gr/c/businessmanagement", "active": false},
+        {"url": "https://bookpath.gr/c/smart-thinking", "active": false},
+        {"url": "https://bookpath.gr/c/best-sellers", "active": false},
+        {"url": "https://bookpath.gr/c/prosfores", "active": false}
+    ]
+}

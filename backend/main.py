@@ -22,7 +22,8 @@ from dotenv import find_dotenv, load_dotenv
 load_dotenv(find_dotenv())
 
 # Import routers after adding the backend path
-from backend.api.user_management.router import router as user_router
+from backend.api.user_management.router import router as user_management_router
+from backend.api.isbndb.router import router as isbndb_router
 
 # Initialize FastAPI app
 app = FastAPI()
@@ -44,7 +45,10 @@ app.add_middleware(
 )
 
 # Register the routers
-app.include_router(user_router, prefix="/api")
+app.include_router(
+    user_management_router, prefix="/user_management", tags=["user_management"]
+)
+app.include_router(isbndb_router, prefix="/isbndb", tags=["isbndb"])
 
 # Mount static directories under a single base path
 app.mount("/static/audio", StaticFiles(directory=os.getenv("AUDIO")), name="audio")
